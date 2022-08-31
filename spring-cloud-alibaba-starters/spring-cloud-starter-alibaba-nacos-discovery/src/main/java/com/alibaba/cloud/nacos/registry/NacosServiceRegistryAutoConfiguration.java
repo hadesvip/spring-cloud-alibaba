@@ -39,11 +39,16 @@ import org.springframework.context.annotation.Configuration;
  * @author xiaojing
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  */
+//配置类
 @Configuration(proxyBeanMethods = false)
+//属性配置
 @EnableConfigurationProperties
+//当spring.cloud.nacos.discovery.enabled=true生效，默认true
 @ConditionalOnNacosDiscoveryEnabled
+//当spring.cloud.service-registry.auto-registration.enabled=true生效，默认true
 @ConditionalOnProperty(value = "spring.cloud.service-registry.auto-registration.enabled",
 		matchIfMissing = true)
+//自动配置时机在AutoServiceRegistrationConfiguration、AutoServiceRegistrationAutoConfiguration、NacosDiscoveryAutoConfiguration之后
 @AutoConfigureAfter({ AutoServiceRegistrationConfiguration.class,
 		AutoServiceRegistrationAutoConfiguration.class,
 		NacosDiscoveryAutoConfiguration.class })
