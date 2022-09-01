@@ -28,11 +28,17 @@ import org.springframework.context.annotation.Configuration;
 /**
  * @author <a href="mailto:echooy.mxq@gmail.com">echooymxq</a>
  **/
+//配置类
 @Configuration(proxyBeanMethods = false)
+//
 @ConditionalOnDiscoveryEnabled
+//
 @ConditionalOnNacosDiscoveryEnabled
 public class NacosDiscoveryAutoConfiguration {
 
+	/**
+	 * 在当前IOC容器中不存在NacosDiscoveryProperties类型的Bean时则注册，如果已经存在则不会再次注册
+	 */
 	@Bean
 	@ConditionalOnMissingBean
 	public NacosDiscoveryProperties nacosProperties() {
